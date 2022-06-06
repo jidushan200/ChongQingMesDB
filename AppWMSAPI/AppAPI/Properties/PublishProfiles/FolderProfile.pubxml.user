@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\GRJ2103\publish</_PublishTargetUrl>
+    <History>True|2022-05-09T07:03:44.4597311Z;True|2022-04-26T11:41:02.5792900+08:00;True|2022-04-21T11:48:23.5858512+08:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AppHandlers/AppOrderHandler.ashx">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="AppHandlers/AppScreenHandler.ashx">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="AppHandlers/AppStoreHandler.ashx">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="bin/AppAPI.dll">
+      <publishTime>05/09/2022 15:03:44</publishTime>
+    </File>
+    <File Include="bin/AppAPI.pdb">
+      <publishTime>05/09/2022 15:03:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>07/29/2021 14:08:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>07/29/2021 14:08:43</publishTime>
+    </File>
+    <File Include="CommonClass/API_ReturnStruct.ashx">
+      <publishTime>03/18/2021 14:53:53</publishTime>
+    </File>
+    <File Include="css/bootstrap-table.css">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="css/bootstrap-table.min.css">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="css/mui.css">
+      <publishTime>05/05/2022 15:02:08</publishTime>
+    </File>
+    <File Include="css/mui.min.css">
+      <publishTime>05/05/2022 15:02:38</publishTime>
+    </File>
+    <File Include="css/mui.picker.min.css">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="fonts/mui.ttf">
+      <publishTime>07/29/2021 14:08:37</publishTime>
+    </File>
+    <File Include="img/000.jpg">
+      <publishTime>02/26/2021 14:49:43</publishTime>
+    </File>
+    <File Include="img/010X.jpg">
+      <publishTime>02/25/2021 17:08:48</publishTime>
+    </File>
+    <File Include="img/010Y.jpg">
+      <publishTime>02/25/2021 17:08:07</publishTime>
+    </File>
+    <File Include="img/020A.jpg">
+      <publishTime>03/02/2021 10:29:54</publishTime>
+    </File>
+    <File Include="img/020B.jpg">
+      <publishTime>03/02/2021 10:30:08</publishTime>
+    </File>
+    <File Include="img/bg.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/black.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/productLine.jpg">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/red.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/RFG.jpg">
+      <publishTime>04/08/2021 10:43:30</publishTime>
+    </File>
+    <File Include="img/RFR.jpg">
+      <publishTime>04/08/2021 10:40:46</publishTime>
+    </File>
+    <File Include="img/small_RFG.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/small_RFR.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/small_US.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/stock.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="img/US.jpg">
+      <publishTime>03/02/2021 10:30:08</publishTime>
+    </File>
+    <File Include="imgFile/RFG.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="imgFile/RFR.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="imgFile/US.png">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="index.aspx">
+      <publishTime>03/17/2021 09:26:14</publishTime>
+    </File>
+    <File Include="indexHandler.ashx">
+      <publishTime>03/16/2021 14:17:59</publishTime>
+    </File>
+    <File Include="js/bootstrap-table-zh-CN.js">
+      <publishTime>03/28/2021 09:40:16</publishTime>
+    </File>
+    <File Include="js/bootstrap-table-zh-CN.min.js">
+      <publishTime>03/28/2021 09:40:16</publishTime>
+    </File>
+    <File Include="js/bootstrap-table.js">
+      <publishTime>03/28/2021 09:40:16</publishTime>
+    </File>
+    <File Include="js/bootstrap-table.min.js">
+      <publishTime>03/28/2021 09:40:16</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>07/25/2016 15:53:30</publishTime>
+    </File>
+    <File Include="js/echarts.min.js">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="js/jquery.min.js">
+      <publishTime>07/29/2021 14:08:40</publishTime>
+    </File>
+    <File Include="js/layer.mobile-v2.0/layer.js">
+      <publishTime>03/20/2021 01:46:56</publishTime>
+    </File>
+    <File Include="js/layer.mobile-v2.0/need/layer.css">
+      <publishTime>08/26/2016 17:35:36</publishTime>
+    </File>
+    <File Include="js/mui.js">
+      <publishTime>07/29/2021 14:08:41</publishTime>
+    </File>
+    <File Include="js/mui.min.js">
+      <publishTime>07/29/2021 14:08:41</publishTime>
+    </File>
+    <File Include="js/mui.picker.min.js">
+      <publishTime>07/29/2021 14:08:41</publishTime>
+    </File>
+    <File Include="js/muiAjax.js">
+      <publishTime>04/16/2021 11:50:32</publishTime>
+    </File>
+    <File Include="js/rem-store-web.js">
+      <publishTime>07/29/2021 14:08:41</publishTime>
+    </File>
+    <File Include="js/rem.js">
+      <publishTime>05/18/2021 11:28:44</publishTime>
+    </File>
+    <File Include="OrderApp.aspx">
+      <publishTime>05/31/2021 15:19:01</publishTime>
+    </File>
+    <File Include="screen.aspx">
+      <publishTime>03/30/2021 10:44:57</publishTime>
+    </File>
+    <File Include="ScreenApp.aspx">
+      <publishTime>04/26/2021 16:26:33</publishTime>
+    </File>
+    <File Include="ScreenProductLine.aspx">
+      <publishTime>06/16/2021 11:49:22</publishTime>
+    </File>
+    <File Include="ScreenStation.aspx">
+      <publishTime>06/15/2021 08:46:36</publishTime>
+    </File>
+    <File Include="ScreenWMS.aspx">
+      <publishTime>06/10/2021 15:43:15</publishTime>
+    </File>
+    <File Include="store.aspx">
+      <publishTime>04/16/2021 11:46:15</publishTime>
+    </File>
+    <File Include="StoreApp.aspx">
+      <publishTime>05/26/2021 11:27:25</publishTime>
+    </File>
+    <File Include="StoreWeb.aspx">
+      <publishTime>05/18/2021 14:16:46</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/26/2022 11:41:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
