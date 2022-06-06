@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>订单屏</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-table.min.js"></script>
+    <script src="../js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../js/layer.mobile-v2.0/layer.js"></script>
+    <script src="../js/jqueryAjax.js"></script>
+    <script src="../js/rem.js"></script>
+    <script src="../js/constant.js"></script>
+
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            touch-action: pan-y;
+        }
+
+        html,
+        body,
+        .main {
+            width: 100%;
+            height: 100%;
+            background-image: url(../img/bg_Order.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            font-family: PingFang SC;
+        }
+
+        .logo-part {
+            position: fixed;
+            top: 0.36rem;
+            left: 0.45rem;
+            height: 0.42rem;
+            width: 1.3rem;
+            background-image: url(../img/logo.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .main .main_part,
+        .main .top_part {
+            margin-top: 1.12rem;
+            margin-bottom: 1%;
+        }
+
+        /* 左边订单列表占比 */
+        .main .main_part {
+            flex: 2;
+        }
+
+        /* 右边状态信息占比 */
+        .main .top_part {
+            flex: 1;
+            /* background-color: #007AFF; */
+        }
+
+        /* 左边:订单表格详细样式 */
+        .main .main_part .part_order {
+            margin: 0 auto;
+            margin-left: 0.43rem;
+            background: #FFFFFF;
+            border-radius: 0.12rem;
+        }
+
+        .main .main_part .part_order .part_order_table {
+            margin-left: 0.25rem;
+            margin-right: 0.25rem;
+            padding-top: 0.27rem;
+            /* background-color: #843534; */
+        }
+
+        .main .main_part .part_order table {
+            width: 100%;
+            height: 100%;
+            font-size: 0.1rem;
+            border-radius: 0.04rem;
+
+        }
+
+        /* 表格下边框颜色:透明 */
+        .bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+            border-bottom-color: transparent;
+        }
+
+        /* .table {
+            table-layout: fixed;
+        } */
+
+        /* "上移, 下移"按钮样式 */
+        .btn-primary.active,
+        .btn-primary.active:focus,
+        .btn-primary.active:hover {
+            background: #007AFF;
+            border-color: #007AFF;
+            box-shadow: 0px 2px 5px 0px rgba(22, 22, 22, 0.14);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .fixed-table-loading.table-borderless {
+            width: 100%;
+        }
+
+        /* 右边状态显示详细样式 */
+        .main .top_part .part_operation {
+            /* width: 90%; */
+            height: 100%;
+            margin: 0 auto;
+            margin-left: 0.25rem;
+            margin-right: 0.36rem;
+            border-radius: 0.12rem;
+            background: #FFFFFF;
+        }
+
+        .main .top_part .part_operation table {
+            width: 100%;
+            height: 100%;
+            font-size: 0.2rem;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .main .top_part .part_operation table tr {
+        }
+
+        .main .top_part .part_operation table tr .tr_lab {
+            margin-top: 0;
+            margin-left: 0.18rem;
+            margin-right: 0.18rem;
+            padding: 0.20rem 0.21rem;
+            background: #FFFFFF;
+            border: 1px solid #DBECFF;
+            box-shadow: 0px 2px 5px 0px rgba(43, 187, 89, 0.14);
+            border-radius: 0.06rem;
+        }
+
+        .main .top_part .part_operation table tr .tr_lab span {
+            color: #2BBB59;
+        }
+
+        .main .top_part .part_operation table tr:nth-last-child(3) .tr_lab {
+            /* margin-bottom: 2.0rem; */
+        }
+
+        .main .top_part .part_operation table tr .tr_btn {
+            height: 75%;
+            margin-left: 0.18rem;
+            margin-right: 0.18rem;
+        }
+
+        .main .top_part .part_operation table tr:nth-last-child(2) .tr_btn {
+            margin-top: 0.12rem;
+            margin-bottom: 0;
+        }
+
+        .main .top_part .part_operation table tr .tr_btn button {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0.28rem;
+        }
+
+        /* "停止"按钮样式 */
+        .btn-danger.active,
+        .btn-danger.active:focus,
+        .btn-danger.active:hover {
+            background: #C02A2A;
+            box-shadow: 0px 2px 5px 0px rgba(242, 73, 73, 0.4);
+            border-color: #C02A2A;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        /* "运行"按钮样式 */
+        .btn-success.active,
+        .btn-success.active:focus,
+        .btn-success.active:hover {
+            background: #2BBB59;
+            box-shadow: 0px 1px 9px 0px rgba(43, 187, 89, 0.75);
+            border-color: #2BBB59;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .btn.disabled,
+        .btn[disabled] {
+            opacity: 0.45;
+        }
+
+        #backBtn {
+            position: absolute;
+            top: 4%;
+            right: 3%;
+            z-index: 1;
+            width: 1rem;
+            height: 0.6rem;
+        }
+
+        #backBtn button {
+            width: 100%;
+            height: 100%;
+            font-size: 0.33rem;
+            display: block;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<!--返回按钮-->
+<div id="backBtn">
+    <button type="button" class="mui-btn mui-btn-primary">主页</button>
+</div>
+<div class="logo-part"></div>
+<div class="main">
+    <!-- 左边:订单 -->
+    <div class="main_part">
+        <div class="part_order">
+            <!--这里放置真实显示的DOM内容-->
+            <div class="part_order_table">
+                <table id="table_main" data-toggle="table" data-row-style="rowStyle"
+                       data-header-style="headerStyle" data-classes="table-borderless">
+                    <thead>
+                    <tr>
+                        <th data-width="12.5" data-width-unit="%" data-align="center"
+                            data-field="ordernumber">
+                            订单编号
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="name" data-align="center">产品名称
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="productImg"
+                            data-formatter="cellImg" data-align="center">产品展示
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="quantity" data-align="center">
+                            订单数量
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="onlinecnt"
+                            data-align="center">
+                            上线数量
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="finishedcnt"
+                            data-align="center">
+                            完成数量
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="orderUp"
+                            data-formatter="cellUP" data-align="center">上移
+                        </th>
+                        <th data-width="12.5" data-width-unit="%" data-field="orderDown"
+                            data-formatter="cellDown" data-align="center">下移
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 右边:状态显示 -->
+    <div class="top_part">
+        <div class="part_operation">
+            <table>
+                <tr>
+                    <td>
+                        <div class="tr_lab">订单编号：<span id="ordernumber">--</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_lab">产品名称：<span id="productname">--</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_lab">订单数量：<span id="quantity">--</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_lab">上线数量：<span id="onlinecnt">--</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_lab">完成数量：<span id="finishedcnt">--</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_btn">
+                            <button type="button" class="btn btn-success active"
+                                    disabled="disabled" id="btnRun">运行
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="tr_btn">
+                            <button type="button" class="btn btn-danger active"
+                                    disabled="disabled" id="btnStop">停止
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var url = WMS.orderUrl;
+
+    var socket = null;
+
+    if (window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener('plusready', plusReady, false);
+    }
+
+    function plusReady() {
+        // 横屏显示
+        plus.screen.lockOrientation("landscape");
+    }
+
+    //初始化信息显示
+    setInfo();
+
+    //设置表格高度
+    var tableHeight = document.body.clientHeight * 0.80;
+    $('#table_main').bootstrapTable({
+        height: tableHeight,
+        url: url + '?method=Query',
+        // 列点击事件
+        onClickCell: function (field, value, row, element) {
+            if (field == 'orderUp') {
+                var data = {
+                    method: 'MoveUp',
+                    num: row.num,
+                    id: row.id
+                };
+                jqueryAJAX(url, data, function (dataStr) {
+                });
+            }
+            if (field == 'orderDown') {
+                var data = {
+                    method: 'MoveDown',
+                    num: row.num,
+                    id: row.id
+                };
+                jqueryAJAX(url, data, function (dataStr) {
+                });
+            }
+        }
+    });
+
+    document.querySelector('.fixed-table-loading.table-borderless').style.width = '100%';
+
+    // 定时器: 确保websocket处于连接状态
+    setInterval(function () {
+        if (socket) {
+            if (socket.readyState == 0 || socket.readyState == 3)
+                setWebSocket();
+        } else
+            setWebSocket();
+    }, 6000);
+
+    // 禁止 按钮事件绑定
+    $('#btnStop').click(function () {
+        var data = {
+            method: 'RunState',
+            runstate: 0
+        };
+        jqueryAJAX(url, data, function (dataStr) {
+            // layer.open({
+            // 	content: dataStr.Msg,
+            // 	skin: 'msg',
+            // 	time: 1
+            // });
+        });
+    });
+
+    // 运行 按钮事件绑定
+    $('#btnRun').click(function () {
+        var data = {
+            method: 'RunState',
+            runstate: 1
+        };
+        jqueryAJAX(url, data, function (dataStr) {
+            // layer.open({
+            // 	content: dataStr.Msg,
+            // 	skin: 'msg',
+            // 	time: 1
+            // });
+        });
+    });
+
+    //获取信息显示部分数据函数
+    function setInfo() {
+        var data = {
+            method: 'QueryInfo'
+        }
+        jqueryAJAX(url, data, function (dataStr) {
+            var dataList = dataStr.RData["Data0"][0];
+            document.getElementById('ordernumber').innerHTML = dataList.ordernumber;
+            document.getElementById('productname').innerHTML = dataList.name;
+            document.getElementById('quantity').innerHTML = dataList.quantity;
+            document.getElementById('onlinecnt').innerHTML = dataList.onlinecnt;
+            document.getElementById('finishedcnt').innerHTML = dataList.finishedcnt;
+        });
+
+        var dataState = {
+            method: 'BtnState'
+        }
+        jqueryAJAX(url, dataState, function (dataStr) {
+            var dataList = dataStr.RData["Data0"][0];
+            if (dataList.EnStart == '1')
+                $('#btnRun').attr("disabled", false);
+            else
+                $('#btnRun').attr("disabled", true);
+            if (dataList.EnStop == '1')
+                $('#btnStop').attr("disabled", false);
+            else
+                $('#btnStop').attr("disabled", true);
+        });
+    }
+
+    //启动WebSocket
+    function setWebSocket() {
+        var wsurl = url.replace(/^http/g, "ws") + "?method=OpenWebSocket";
+
+        if (!this.WebSocket) {
+            this.WebSocket = this.MozWebSocket;
+        }
+        if (this.WebSocket) {
+            socket = new WebSocket(wsurl);
+            socket.onmessage = function(e) {
+                //console.log("服务器向客户端传输数据" + e.data +","+new Date());
+                if (e.data == 'updated') {
+                    setInfo();
+                    $('#table_main').bootstrapTable('refresh', {
+                        silent: true
+                    });
+                }
+            };
+            socket.onopen = function(event) {
+                console.log("连接开启");
+            };
+            socket.onclose = function(event) {
+                console.log("连接被关闭");
+            };
+        } else {
+            alert("你的系统不支持 WebSocket！");
+        }
+    }
+
+    //行样式
+    function rowStyle(row, index) {
+        var colorStr = '';
+        if (index % 2 == 0) {
+            colorStr = '#FFFFFF';
+        } else {
+            colorStr = '#F5F7FA';
+        }
+        return {
+            css: {
+                'height': document.body.clientHeight * 0.225 + 'px',
+                'padding-top': '0.30rem',
+                'padding-bottom': '0.30rem',
+                'font-size': '0.2rem',
+                'background': colorStr,
+                // 'border-radius': '3px'
+            }
+        }
+    }
+
+    //列头样式
+    function headerStyle(column) {
+        return {
+            css: {
+                'color': '#333333',
+                'padding-top': '0.30rem',
+                'padding-bottom': '0.30rem',
+                'font-size': '0.2rem',
+                'font-weight': 'bold',
+                'background': '#F5F7FA',
+            }
+        }
+    }
+
+    // '产品展示'列图片样式
+    function cellImg(value, row, index, field) {
+        var imgUrl = 'RF00';
+        imgUrl = row.productcode;
+        return '<div style="width:90%;height:90%;background:url(../img/' + imgUrl +
+            '.png);background-repeat: no-repeat;background-size: 85% auto;background-position: center center;"></div>';
+    }
+
+    //'上移'列样式
+    function cellUP(value, row, index, field) {
+        return '<button style="width:85%" class="btn btn-primary active"><span style="color:#FFF;font-size:0.35rem" class="glyphicon glyphicon-arrow-up"></span></button>';
+    }
+
+    //'下移'列样式
+    function cellDown(value, row, index, field) {
+        return '<button style="width:85%" class="btn btn-primary active"><span style="color:#FFF;font-size:0.35rem" class="glyphicon glyphicon-arrow-down"></span></button>';
+    }
+
+    //返回主页
+    $("#backBtn").click(function () {
+        location.href = "../index.html";
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+<script>
+    var url = "http://localhost:9001/AppHandlers/AppStoreHandler.ashx";
+    var socket = null;
+
+    //定时器: 确保websocket处于连接状态
+    setInterval(function() {
+        if (socket) {
+            if (socket.readyState == 0 || socket.readyState == 3)
+                setWebSocket();
+        } else
+            setWebSocket();
+    }, 2000);
+
+    //启动WebSocket
+    function setWebSocket() {
+        var wsurl = url.replace(/^http/g, "ws") + "?method=OpenWebSocket";
+
+        var store_id = "2";
+
+        if (!this.WebSocket) {
+            this.WebSocket = this.MozWebSocket;
+        }
+        if (this.WebSocket) {
+            // socket = new WebSocket(wsurl);
+            socket = new WebSocket(wsurl,store_id);
+            socket.onmessage = function(e) {
+                //console.log("服务器向客户端传输数据" + e.data +","+new Date());
+                if (e.data == 'updated') {
+                    console.log("updated");
+                    console.log("刷新 websocket");
+                }
+            };
+            socket.onopen = function(event) {
+                console.log("连接开启");
+            };
+            socket.onclose = function(event) {
+                console.log("连接被关闭");
+            };
+        } else {
+            alert("你的系统不支持 WebSocket！");
+        }
+    }
+</script>
