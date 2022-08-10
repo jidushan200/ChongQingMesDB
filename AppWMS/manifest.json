@@ -1,6 +1,6 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
-    "id" : "H50E982CF", /*应用的标识*/
+    "id" : "H558290E6", /*应用的标识*/
     "name" : "AppWMS", /*应用名称，程序桌面图标名称*/
     "version" : {
         "name" : "1.0", /*应用版本名称*/
@@ -12,8 +12,8 @@
     },
     "launch_path" : "index.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
-        "name" : "", /*开发者名称*/
-        "email" : "", /*开发者邮箱地址*/
+        "name" : "zhj", /*开发者名称*/
+        "email" : "1446579723@qq.com", /*开发者邮箱地址*/
         "url" : "" /*开发者个人主页地址*/
     },
     "permissions" : {

@@ -205,14 +205,14 @@ size
 .w-100per-i {
     width: 100% !important;
 }
-.w-300{
+
+.w-300 {
     width: 300px !important;
 }
 
-
 .mauto {
-	margin: 0 auto;
-	display: block;
+    margin: 0 auto;
+    display: block;
 }
 
 .mt-0 {
@@ -223,7 +223,7 @@ size
     margin-top: 0 !important;
 }
 
-.mt-2per{
+.mt-2per {
     margin-top: 2%;
 }
 
@@ -339,7 +339,7 @@ size
     margin-right: 0.1rem !important;
 }
 
-.mr-8per{
+.mr-8per {
     margin-right: 8%;
 }
 
@@ -455,11 +455,11 @@ size
     margin-left: 0 !important;
 }
 
-.ml-3per{
+.ml-3per {
     margin-left: 3%;
 }
 
-.ml-3per-i{
+.ml-3per-i {
     margin-left: 3% !important;
 }
 
@@ -474,7 +474,6 @@ size
 .ml-5per {
     margin-left: 5%;
 }
-
 
 .ml-5rem {
     margin-left: 0.1rem;
@@ -1660,6 +1659,7 @@ cursor
 .bgc-fff-i {
     background-color: #fff !important;
 }
+
 .bgc-hit {
     background-color: #f08116;
 }
@@ -1668,18 +1668,17 @@ cursor
     background-color: #f08116 !important;
 }
 
-.bgc-guowang{
+.bgc-guowang {
     background-color: #0C554A;
 }
 
-.bgc-guowang-i{
+.bgc-guowang-i {
     background-color: #0C554A !important;
 }
 
-
 .bgz-cover {
--webkit-background-size: cover;
-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 
 .bgz-cover-i {
@@ -2010,23 +2009,39 @@ https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/
 /*# sourceMappingURL=index.css.map */
 
 /*浮动*/
-.fl{
+.fl {
     float: left;
 }
 
-.fr{
+.fr {
     float: right;
 }
 
 /*清除浮动*/
-.clearfix:after{
-    content:"";				/*设置内容为空*/
-    height:0;				/*高度为0*/
-    line-height:0;			/*行高为0*/
-    display:block;			/*将文本转为块级元素*/
-    visibility:hidden;		/*将元素隐藏*/
-    clear:both;				/*清除浮动*/
+.clearfix:after {
+    content: ""; /*设置内容为空*/
+    height: 0; /*高度为0*/
+    line-height: 0; /*行高为0*/
+    display: block; /*将文本转为块级元素*/
+    visibility: hidden; /*将元素隐藏*/
+    clear: both; /*清除浮动*/
 }
-.clearfix{
-    zoom:1;					/*为了兼容IE*/
+
+.clearfix {
+    zoom: 1; /*为了兼容IE*/
+}
+
+/*特殊占用遮罩*/
+.occupy:after {
+    content: '占用';
+    line-height: 1rem;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    background: #ccc;
+    z-index: 94;
+    left: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
 }
