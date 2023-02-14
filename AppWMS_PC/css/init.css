@@ -1,0 +1,44 @@
+/**
+ * @Author zhj
+ * @Description 基于京东的样式初始化文件【备注：本人一直做cs架构的页面，把以往项目中常用的初始化样式做了保留，不常见的做了删减】
+ * @Date 9:54 2022/5/6
+ * @Param
+ * @return
+ **/
+/* 把我们所有标签的内外边距清零 */
+* {
+    margin: 0;
+    padding: 0
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: PingFang SC;
+}
+/* em 和 i 斜体的⽂字不倾斜 */
+em,
+i {
+    font-style: normal
+}
+/* 去掉li 的⼩圆点 */
+li {
+    list-style: none
+}
+img {
+    /* border 0 照顾低版本浏览器如果图⽚外⾯包含了链接会有边框的问题 */
+    border: 0;
+    /* 取消图⽚底侧有空⽩缝隙的问题 */
+    vertical-align: middle
+}
+button {
+    /* 当我们⿏标经过button 按钮的时候，⿏标变成⼩⼿ */
+    cursor: pointer
+}
+a {
+    color: #666;
+    text-decoration: none
+}
+td{
+	font-size: 15px;
+}

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>CNC加工订单屏</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link href="../css/init.css" rel="stylesheet" />
+
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/rem.js"></script>
+	<script src="../js/constant.js"></script>
+	<script src="../js/muiAjax.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			touch-action: pan-y;
+		}
+
+		html,
+		body,
+		.main {
+			width: 100%;
+			height: 100%;
+			background-image: url(../img/bg_Order.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: flex;
+			font-family: "微软雅黑" !important;
+		}
+
+		.logo-part {
+			position: fixed;
+			top: 0.36rem;
+			left: 0.45rem;
+			height: 0.42rem;
+			width: 1.3rem;
+			background-image: url(../img/logo.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+
+		.main .main_part,
+		.main .top_part {
+			margin-top: 1.12rem;
+			margin-bottom: 1%;
+		}
+
+		/* 左边订单列表占比 */
+		.main .main_part {
+			flex: 5;
+		}
+		#order_cont{
+			overflow: scroll;
+			width: 101%;
+			height: 94%;
+		}
+
+		/* 右边状态信息占比 */
+		.main .top_part {
+			flex: 2;
+		}
+
+		/* 左边:订单表格详细样式 */
+		.main .main_part .part_order {
+			margin: 0 auto;
+			margin-left: 0.2rem;
+			background: #FFFFFF;
+			border-radius: 0.12rem;
+
+			width: 99%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.main .main_part .part_order .part_order_table {
+			margin-left: 0.25rem;
+			margin-right: 0.25rem;
+			padding-top: 0.27rem;
+			/* background-color: #843534; */
+
+			width: 100%;
+			height: 100%;
+		}
+
+		.part_order_table table {
+			position: relative;
+			width: 98%;
+			height: 1rem;
+			text-align: center;
+			border-radius: 0.04rem;
+			font-size: 0.2rem;
+		}
+
+		.part_order_table thead {
+			font-size: 0.25rem;
+			top: 14%;
+		}
+		/* 表头固定 */
+		thead tr th {
+			background-color: #fff;
+		}
+
+		.part_order_table tbody {
+			font-size: 0.25rem;
+		}
+
+		.part_order_table th,
+		.part_order_table td {
+			padding: 0.7% 0;
+			width: 15%;
+		}
+
+		.part_order_table th:last-child,
+		.part_order_table td:last-child {
+			width: 27%;
+		}
+
+		.part_order_table td img {
+			display: block;
+			width: 90%;
+		}
+
+		.part_order_table button {
+			font-size: 0.25rem;
+			background-color: #007aff;
+			color: #fff;
+			margin-right: 5%;
+			margin-bottom: 7%;
+			padding: 0.18rem;
+		}
+
+		/* 表格下边框颜色:透明 */
+		.bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+			border-bottom-color: transparent;
+		}
+
+		.fixed-table-loading.table-borderless {
+			width: 100%;
+		}
+
+		/* 右边状态显示详细样式 */
+		.main .top_part .part_operation {
+			/* width: 90%; */
+			height: 100%;
+			margin: 0 auto;
+			margin-left: 0.2rem;
+			margin-right: 0.2rem;
+			border-radius: 0.12rem;
+			background: #FFFFFF;
+		}
+
+		.main .top_part .part_operation table {
+			width: 100%;
+			height: 100%;
+			font-size: 0.26rem;
+			font-weight: bold;
+			margin: 0 auto;
+		}
+
+		.main .top_part .part_operation table tr {}
+
+		.main .top_part .part_operation table tr .tr_lab {
+			margin-top: 0;
+			margin-left: 0.18rem;
+			margin-right: 0.18rem;
+			padding: 0.20rem 0.21rem;
+			background: #FFFFFF;
+			border: 1px solid #DBECFF;
+			box-shadow: 0px 2px 5px 0px rgba(43, 187, 89, 0.14);
+			border-radius: 0.06rem;
+		}
+
+		.main .top_part .part_operation table tr .tr_lab span {
+			color: #2BBB59;
+		}
+
+		.main .top_part .part_operation table tr:nth-last-child(3) .tr_lab {
+			/* margin-bottom: 2.0rem; */
+		}
+
+		.main .top_part .part_operation table tr .tr_btn {
+			height: 75%;
+			margin-left: 0.18rem;
+			margin-right: 0.18rem;
+		}
+
+		.main .top_part .part_operation table tr:nth-last-child(2) .tr_btn {
+			margin-top: 0.12rem;
+			margin-bottom: 0;
+		}
+
+		.main .top_part .part_operation table tr .tr_btn button {
+			display: block;
+			width: 100%;
+			height: 100%;
+			font-size: 0.28rem;
+		}
+
+		/* "停止"按钮样式 */
+		.btn-danger.active,
+		.btn-danger.active:focus,
+		.btn-danger.active:hover {
+			background: #C02A2A;
+			box-shadow: 0px 2px 5px 0px rgba(242, 73, 73, 0.4);
+			border-color: #C02A2A;
+			border-radius: 2px;
+			outline: none;
+		}
+
+		/* "运行"按钮样式 */
+		.btn-success.active,
+		.btn-success.active:focus,
+		.btn-success.active:hover {
+			background: #2BBB59;
+			box-shadow: 0px 1px 9px 0px rgba(43, 187, 89, 0.75);
+			border-color: #2BBB59;
+			border-radius: 2px;
+			outline: none;
+		}
+
+		.btn.disabled,
+		.btn[disabled] {
+			opacity: 0.45;
+		}
+
+		#backBtn {
+			position: absolute;
+			top: 4%;
+			right: 3%;
+			z-index: 1;
+			width: 1rem;
+			height: 0.6rem;
+		}
+
+		#backBtn button {
+			width: 100%;
+			height: 100%;
+			font-size: 0.33rem;
+			display: block;
+			padding: 0;
+			margin: 0;
+			text-align: center;
+
+			border: 0;
+			background-color: transparent;
+		}
+
+		#backBtn img {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		/*返回按钮结束*/
+	</style>
+</head>
+<body>
+<!--返回按钮-->
+<div id="backBtn">
+	<button type="button"><img src="../img/home_Back.svg"></button>
+</div>
+<div class="logo-part"></div>
+<div class="main">
+	<!-- 左边:订单 -->
+	<div class="main_part">
+		<div class="part_order">
+			<!--这里放置真实显示的DOM内容-->
+			<div class="part_order_table">
+				<table id="order_title">
+					<thead>
+					<tr>
+						<th field="ordernumber">订单编号</th>
+						<!--<th field="productImg">产品展示</th>-->
+						<th field="name">产品名称</th>
+						<th field="quantity">订单数量</th>
+						<th field="onlinecnt">上线数量</th>
+						<th field="finishedcnt">完成数量</th>
+						<th colspan="2">操作</th>
+					</tr>
+					</thead>
+				</table>
+				<div id="order_cont">
+					<table>
+						<!--Todo: table_1的内容-->
+						<tbody id="table_1_cont"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 右边:状态显示 -->
+	<div class="top_part">
+		<div class="part_operation" id="table_2">
+			<!--TODO：initRightTable()-->
+			<!--<table>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_lab">订单编号：<span id="ordernumber">&#45;&#45;</span></div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_lab">产品名称：<span id="productname">&#45;&#45;</span></div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_lab">订单数量：<span id="quantity">&#45;&#45;</span></div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_lab">上线数量：<span id="onlinecnt">&#45;&#45;</span></div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_lab">完成数量：<span id="finishedcnt">&#45;&#45;</span></div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_btn">-->
+			<!--<button type="button" class="btn btn-success active"-->
+			<!--disabled="disabled" id="btnRun">运行-->
+			<!--</button>-->
+			<!--</div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<td>-->
+			<!--<div class="tr_btn">-->
+			<!--<button type="button" class="btn btn-danger active"-->
+			<!--disabled="disabled" id="btnStop">停止-->
+			<!--</button>-->
+			<!--</div>-->
+			<!--</td>-->
+			<!--</tr>-->
+			<!--</table>-->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    var url = WMS.orderCNCUrl;
+    var socket = null;
+    var table_2_obj = {
+        "订单编号：": "ordernumber",
+        "产品名称：": "productname",
+        "订单数量：": "quantity",
+        "上线数量：": "onlinecnt",
+        "完成数量：": "finishedcnt",
+        "运行": "btnRun",
+        "停止": "btnStop",
+    }
+
+    initRightTable();
+    mui.init();
+    mui.plusReady(function() {
+        // 横屏显示
+        plus.screen.lockOrientation("landscape");
+    });
+
+    var table_1_Data = [];
+    mui.ready(function() {
+        //初始化 左右侧 列表 + 按钮状态
+        getQuery("");
+        getQueryInfo();
+        getBtnState();
+        //定时器: 确保websocket处于连接状态
+        setInterval(function() {
+            if (socket) {
+                if (socket.readyState == 0 || socket.readyState == 3)
+                    setWebSocket();
+            } else
+                setWebSocket();
+        }, 6000);
+
+        //启动WebSocket
+        function setWebSocket() {
+            var wsurl = url.replace(/^http/g, "ws") + "?method=OpenWebSocket&station_code=" + WMS
+                .orderCNC_station_code;
+
+            if (!this.WebSocket) {
+                this.WebSocket = this.MozWebSocket;
+            }
+            if (this.WebSocket) {
+                socket = new WebSocket(wsurl);
+                socket.onmessage = function(e) {
+                    //console.log("服务器向客户端传输数据" + e.data +","+new Date());
+                    if (e.data == 'updated') {
+                        getQuery("");
+                        getQueryInfo();
+                    }
+                };
+                socket.onopen = function(event) {
+                    console.log("连接开启");
+                };
+                socket.onclose = function(event) {
+                    console.log("连接被关闭");
+                };
+            } else {
+                alert("你的系统不支持 WebSocket！");
+            }
+        }
+
+        //返回主页
+        mui("body").on("tap", "#backBtn", function() {
+            location.href = "../index.html";
+        })
+
+        //左侧表格渲染
+        function getQuery(cont) {
+            muiAJAX(url + '?method=Query', "", function(data) {
+
+                table_1_Data = ruleQueryData(data.rows)
+                data = table_1_Data
+
+                for (var i = 0; i < data.length; i++) {
+                    var rowData = data[i],
+                        rowId;
+                    cont += "<tr>";
+                    for (var j = 0; j < rowData.length + 1; j++) {
+                        if (j == rowData.length) {
+                            cont +=
+                                "<td colspan=\"2\">" +
+                                "<button class=\"UP_DOWN\" rowId=" + rowId + " flag=\"up\">上移</button>" +
+                                "<button class=\"UP_DOWN\" rowId=" + rowId +
+                                " flag=\"down\">下移</button>" +
+                                "</td>"
+                            continue;
+                        }
+                        // else if (j == 2)
+                        //     cont += "<td><img src=\"../img/" + "RFG.png" + "\"></img></td>" //产品展示 列用
+                        else if (j == 0)
+                            rowId = rowData[j]
+                        else
+                            cont += "<td>" + rowData[j] + "</td>";
+                    }
+                    cont += "</tr>";
+                }
+                $("#table_1_cont").html(cont);
+            })
+        }
+
+        function getQueryInfo() {
+            var data = {
+                method: 'QueryInfo'
+            }
+            muiAJAX(url, data, function(dataStr) {
+                var dataList = dataStr.RData["Data0"][0];
+                document.getElementById('ordernumber').innerHTML = dataList.ordernumber;
+                document.getElementById('productname').innerHTML = dataList.product_name;
+                document.getElementById('quantity').innerHTML = dataList.quantity;
+                document.getElementById('onlinecnt').innerHTML = dataList.onlinecnt;
+                document.getElementById('finishedcnt').innerHTML = dataList.finishedcnt;
+            });
+        }
+
+        function getBtnState() {
+            var dataState = {
+                method: 'BtnState',
+                order_type: WMS.orderCNC_type
+            }
+            muiAJAX(url, dataState, function(dataStr) {
+                if (dataList == undefined) {
+                    return
+                }
+                var dataList = dataStr.RData["Data0"][0];
+                if (dataList.state == '0')
+                    $('#btnRun').attr("disabled", false);
+                else
+                    $('#btnRun').attr("disabled", true);
+                if (dataList.state == '1')
+                    $('#btnStop').attr("disabled", false);
+                else
+                    $('#btnStop').attr("disabled", true);
+            });
+        }
+
+        // 上移/下移
+        mui(".part_order_table").on("tap", ".UP_DOWN", function(e) {
+            var target = e.target
+            var rowId = $(target).attr("rowId"),
+                flag = $(target).attr("flag");
+            if ("up" == flag) {
+                var params = {
+                    method: "MoveUp",
+                    id: rowId,
+                }
+
+                muiAJAX(url, params, function() {
+                    getQuery("")
+                })
+            } else {
+                var params = {
+                    method: "MoveDown",
+                    id: rowId,
+                }
+
+                muiAJAX(url, params, function() {
+                    getQuery("")
+                })
+
+                //刷新 table_1
+                getQuery("", table_1_Data)
+            }
+        })
+
+        // 禁止 按钮事件绑定
+        mui("body").on('tap', '#btnStop', function() {
+            changeBtnState(0);
+        });
+
+        // 运行 按钮事件绑定
+        mui("body").on('tap', '#btnRun', function() {
+            changeBtnState(1);
+
+        });
+
+        //TODO： 工具
+        //格式化Query数据
+        function ruleQueryData(rows) {
+            var data = []
+            for (var i = 0; i < rows.length; i++) {
+                var ele = [],
+                    ro = rows[i];
+                ele.push(ro.id)
+                ele.push(ro.ordernumber)
+                // ele.push(ro.product_name) //产品展示 列用
+                ele.push(ro.product_name)
+                ele.push(ro.quantity)
+                ele.push(ro.onlinecnt)
+                ele.push(ro.finishedcnt)
+
+                data.push(ele)
+            }
+            return data
+        }
+
+        //交换数据
+        function swapRow(line) {
+            var swap = table_1_Data[parseInt(line)]
+            if (table_1_Data.length - 1 == line) {
+                alert("已经是最后一个了了")
+            } else {
+                //交换数据
+                table_1_Data[parseInt(line)] = table_1_Data[parseInt(line) + 1]
+                table_1_Data[parseInt(line) + 1] = swap
+            }
+        }
+
+        function changeBtnState(cmd) {
+            var params = {
+                method: 'RunState',
+                cmd: cmd,
+                order_type: WMS.orderCNC_type
+            };
+            muiAJAX(url, params, function(dataStr) {
+                getBtnState();
+            });
+        }
+    })
+
+    //初始化 右侧列表
+    function initRightTable() {
+        var cont = ""
+        cont += "<table>"
+        for (var ele in table_2_obj) {
+            if ("运行" == ele || "停止" == ele) {
+                cont += "<tr>\n" +
+                    "    <td>\n" +
+                    "        <div class=\"tr_btn\">\n" +
+                    "            <button type=\"button\" class=\"btn " + ("运行" == ele ? "btn-success" : "btn-danger") +
+                    " active\"\n" +
+                    "                    disabled=\"disabled\" id=\"" + table_2_obj[ele] + "\">" + ele + "\n" +
+                    "            </button>\n" +
+                    "        </div>\n" +
+                    "    </td>\n" +
+                    "</tr>"
+            } else {
+                cont += "<tr>\n" +
+                    "    <td>\n" +
+                    "        <div class=\"tr_lab\">" + ele + "<span id=\"" + table_2_obj[ele] + "\">--</span></div>\n" +
+                    "    </td>\n" +
+                    "</tr>"
+            }
+        }
+        cont += "</table>"
+        $("#table_2").append(cont);
+    }
+</script>
+</body>
+</html>
