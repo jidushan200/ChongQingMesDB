@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>环线订单屏</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>CNC加工订单屏</title>
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/init.css" rel="stylesheet" />
 
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/mui.min.js"></script>
@@ -13,7 +14,6 @@
     <script src="../js/constant.js"></script>
     <script src="../js/muiAjax.js"></script>
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -53,6 +53,11 @@
         .main .main_part {
             flex: 5;
         }
+        #order_cont{
+            overflow: scroll;
+            width: 100%;
+            height: 94%;
+        }
 
         /* 右边状态信息占比 */
         .main .top_part {
@@ -65,6 +70,9 @@
             margin-left: 0.2rem;
             background: #FFFFFF;
             border-radius: 0.12rem;
+
+            width: 99%;
+            height: 100%;
         }
 
         .main .main_part .part_order .part_order_table {
@@ -72,14 +80,15 @@
             margin-right: 0.25rem;
             padding-top: 0.27rem;
             /* background-color: #843534; */
-        }
+
+            width: 99%;
+            height: 100%;
+		}
 
         .part_order_table table {
+            position: relative;
             width: 100%;
             height: 100%;
-            table-layout: fixed;
-            overflow: auto;
-
             text-align: center;
             border-radius: 0.04rem;
             font-size: 0.2rem;
@@ -87,6 +96,11 @@
 
         .part_order_table thead {
             font-size: 0.25rem;
+			top: 14%;
+        }
+        /* 表头固定 */
+        thead tr th {
+            background-color: #fff;
         }
 
         .part_order_table tbody {
@@ -146,8 +160,7 @@
             margin: 0 auto;
         }
 
-        .main .top_part .part_operation table tr {
-        }
+        .main .top_part .part_operation table tr {}
 
         .main .top_part .part_operation table tr .tr_lab {
             margin-top: 0;
@@ -240,6 +253,7 @@
             height: 100%;
             display: block;
         }
+
         /*返回按钮结束*/
     </style>
 </head>
@@ -255,8 +269,8 @@
         <div class="part_order">
             <!--这里放置真实显示的DOM内容-->
             <div class="part_order_table">
-                <table>
-                    <thead id="table_1_title">
+                <table id="order_title">
+                    <thead>
                     <tr>
                         <th field="ordernumber">订单编号</th>
                         <!--<th field="productImg">产品展示</th>-->
@@ -267,9 +281,13 @@
                         <th colspan="2">操作</th>
                     </tr>
                     </thead>
-                    <!--Todo: table_1的内容-->
-                    <tbody id="table_1_cont"></tbody>
                 </table>
+                <div id="order_cont">
+                    <table>
+                        <!--Todo: table_1的内容-->
+                        <tbody id="table_1_cont"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -327,7 +345,6 @@
 </div>
 
 <script type="text/javascript">
-
     var url = WMS.orderUrl;
     var socket = null;
     var table_2_obj = {
@@ -342,19 +359,19 @@
 
     initRightTable();
     mui.init();
-    mui.plusReady(function () {
+    mui.plusReady(function() {
         // 横屏显示
         plus.screen.lockOrientation("landscape");
     });
 
     var table_1_Data = [];
-    mui.ready(function () {
+    mui.ready(function() {
         //初始化 左右侧 列表 + 按钮状态
         getQuery("");
         getQueryInfo();
         getBtnState();
         //定时器: 确保websocket处于连接状态
-        setInterval(function () {
+        setInterval(function() {
             if (socket) {
                 if (socket.readyState == 0 || socket.readyState == 3)
                     setWebSocket();
@@ -364,24 +381,25 @@
 
         //启动WebSocket
         function setWebSocket() {
-            var wsurl = url.replace(/^http/g, "ws") + "?method=OpenWebSocket&station_code=" + WMS.order_station_code;
+            var wsurl = url.replace(/^http/g, "ws") + "?method=OpenWebSocket&station_code=" + WMS
+                .orderCNC_station_code;
 
             if (!this.WebSocket) {
                 this.WebSocket = this.MozWebSocket;
             }
             if (this.WebSocket) {
                 socket = new WebSocket(wsurl);
-                socket.onmessage = function (e) {
+                socket.onmessage = function(e) {
                     //console.log("服务器向客户端传输数据" + e.data +","+new Date());
                     if (e.data == 'updated') {
                         getQuery("");
                         getQueryInfo();
                     }
                 };
-                socket.onopen = function (event) {
+                socket.onopen = function(event) {
                     console.log("连接开启");
                 };
-                socket.onclose = function (event) {
+                socket.onclose = function(event) {
                     console.log("连接被关闭");
                 };
             } else {
@@ -390,28 +408,28 @@
         }
 
         //返回主页
-        mui("body").on("tap", "#backBtn", function () {
+        mui("body").on("tap", "#backBtn", function() {
             location.href = "../index.html";
         })
 
         //左侧表格渲染
         function getQuery(cont) {
-            muiAJAX(url + '?method=Query', "", function (data) {
-                console.log(data);
-                console.log("Query");
+            muiAJAX(url + '?method=Query', "", function(data) {
 
                 table_1_Data = ruleQueryData(data.rows)
                 data = table_1_Data
 
                 for (var i = 0; i < data.length; i++) {
-                    var rowData = data[i], rowId;
+                    var rowData = data[i],
+                        rowId;
                     cont += "<tr>";
                     for (var j = 0; j < rowData.length + 1; j++) {
                         if (j == rowData.length) {
                             cont +=
                                 "<td colspan=\"2\">" +
                                 "<button class=\"UP_DOWN\" rowId=" + rowId + " flag=\"up\">上移</button>" +
-                                "<button class=\"UP_DOWN\" rowId=" + rowId + " flag=\"down\">下移</button>" +
+                                "<button class=\"UP_DOWN\" rowId=" + rowId +
+                                " flag=\"down\">下移</button>" +
                                 "</td>"
                             continue;
                         }
@@ -432,7 +450,7 @@
             var data = {
                 method: 'QueryInfo'
             }
-            muiAJAX(url, data, function (dataStr) {
+            muiAJAX(url, data, function(dataStr) {
                 var dataList = dataStr.RData["Data0"][0];
                 document.getElementById('ordernumber').innerHTML = dataList.ordernumber;
                 document.getElementById('productname').innerHTML = dataList.product_name;
@@ -445,9 +463,12 @@
         function getBtnState() {
             var dataState = {
                 method: 'BtnState',
-                order_type: WMS.order_type
+                order_type: WMS.orderCNC_type
             }
-            muiAJAX(url, dataState, function (dataStr) {
+            muiAJAX(url, dataState, function(dataStr) {
+                if (dataList == undefined) {
+                    return
+                }
                 var dataList = dataStr.RData["Data0"][0];
                 if (dataList.state == '0')
                     $('#btnRun').attr("disabled", false);
@@ -461,7 +482,7 @@
         }
 
         // 上移/下移
-        mui(".part_order_table").on("tap", ".UP_DOWN", function (e) {
+        mui(".part_order_table").on("tap", ".UP_DOWN", function(e) {
             var target = e.target
             var rowId = $(target).attr("rowId"),
                 flag = $(target).attr("flag");
@@ -471,17 +492,16 @@
                     id: rowId,
                 }
 
-                muiAJAX(url, params, function () {
+                muiAJAX(url, params, function() {
                     getQuery("")
                 })
-            }
-            else {
+            } else {
                 var params = {
                     method: "MoveDown",
                     id: rowId,
                 }
 
-                muiAJAX(url, params, function () {
+                muiAJAX(url, params, function() {
                     getQuery("")
                 })
 
@@ -491,12 +511,12 @@
         })
 
         // 禁止 按钮事件绑定
-        mui("body").on('tap', '#btnStop', function () {
+        mui("body").on('tap', '#btnStop', function() {
             changeBtnState(0);
         });
 
         // 运行 按钮事件绑定
-        mui("body").on('tap', '#btnRun', function () {
+        mui("body").on('tap', '#btnRun', function() {
             changeBtnState(1);
 
         });
@@ -506,7 +526,8 @@
         function ruleQueryData(rows) {
             var data = []
             for (var i = 0; i < rows.length; i++) {
-                var ele = [], ro = rows[i];
+                var ele = [],
+                    ro = rows[i];
                 ele.push(ro.id)
                 ele.push(ro.ordernumber)
                 // ele.push(ro.product_name) //产品展示 列用
@@ -517,7 +538,6 @@
 
                 data.push(ele)
             }
-            console.log(data);
             return data
         }
 
@@ -537,9 +557,9 @@
             var params = {
                 method: 'RunState',
                 cmd: cmd,
-                order_type: WMS.order_type
+                order_type: WMS.orderCNC_type
             };
-            muiAJAX(url, params, function (dataStr) {
+            muiAJAX(url, params, function(dataStr) {
                 getBtnState();
             });
         }
@@ -554,7 +574,8 @@
                 cont += "<tr>\n" +
                     "    <td>\n" +
                     "        <div class=\"tr_btn\">\n" +
-                    "            <button type=\"button\" class=\"btn " + ("运行" == ele ? "btn-success" : "btn-danger") + " active\"\n" +
+                    "            <button type=\"button\" class=\"btn " + ("运行" == ele ? "btn-success" : "btn-danger") +
+                    " active\"\n" +
                     "                    disabled=\"disabled\" id=\"" + table_2_obj[ele] + "\">" + ele + "\n" +
                     "            </button>\n" +
                     "        </div>\n" +

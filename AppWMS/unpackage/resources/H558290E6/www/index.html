@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>主页</title>
+    <!--移动端尺寸: 876*490-->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/mui.min.js"></script>
+    <script src="js/muiAjax.js"></script>
+    <script src="js/rem.js" type="text/javascript"></script>
+    <link href="css/init.css" rel="stylesheet">
+    <link href="css/css-utils.css" rel="stylesheet"/>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+        .pageBox {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url(img/mes_inedex_2.jpg);
+            background-repeat: no-repeat;
+            background-size: 125% 100%;
+        }
+
+        /*button*/
+        .fixDisplay {
+            position: absolute;
+            top: 40%;
+            left: 5%;
+            width: 75%;9
+            height: 100%;
+        }
+
+        .btnBox li {
+            float: left;
+            margin-right: 7%;
+            margin-top: 4%;
+            width: 3rem;
+        }
+
+        .btnBox button {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0.4rem;
+
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(169, 183, 222, 0.86);
+            padding: 0.1rem 0.3rem;
+
+            /*动画*/
+            -webkit-transition: all 0.36s;
+            -moz-transition: all 0.36s;
+            -ms-transition: all 0.36s;
+            -o-transition: all 0.36s;
+            transition: all 0.36s;
+        }
+
+        .btnBox button:hover {
+            background-color: #3595f7 !important;
+        }
+
+        /*标题*/
+        .pagetitle p {
+            font-size: 1rem;
+            line-height: 1.75;
+            font-weight: bold;
+            color: #ffffff;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pagetitle {
+            height: 50%;
+            width: 100%;
+            padding-top: 0.5rem;
+            padding-left: 1rem;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div class="pageBox">
+    <div class="pagetitle">
+        <p>重庆工职院 MES 系统</p>
+    </div>
+
+    <div class="fixDisplay">
+        <div class="contBox">
+            <ul class="btnBox">
+                <li class="oneBtn">
+                    <button type="button" class="mui-btn mui-btn-primary">机加工库</button>
+                </li>
+                <li class="twoBtn">
+                    <button type="button" class="mui-btn mui-btn-primary">环线库</button>
+                </li>
+                <li class="threeBtn">
+                    <button type="button" class="mui-btn mui-btn-primary">环线订单</button>
+                </li>
+                <li class="fourBtn">
+                    <button type="button" class="mui-btn mui-btn-primary">CNC加工订单</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    //跳转
+    mui("body").on("tap", ".oneBtn", function () {
+        location.href = "html/left_page.html";
+    })
+    mui("body").on("tap", ".twoBtn", function () {
+        location.href = "html/right_page.html";
+    })
+    mui("body").on("tap", ".threeBtn", function () {
+        location.href = "html/order.html";
+    })
+    mui("body").on("tap", ".fourBtn", function () {
+        location.href = "html/cnc_order.html";
+    })
+</script>
+</body>
+</html>

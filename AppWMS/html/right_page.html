@@ -337,6 +337,10 @@
             width: 1rem;
             height: 1rem;
         }
+
+        #btnToFinishWhite{
+            margin-right:2.5%!important;
+        }
     </style>
 </head>
 <body>
@@ -519,32 +523,32 @@
                 "changeName": null,
                 "actionName": null
             },
-            "转为毛坯白": {
-                "id": "btnToR",
-                "btn_change": "btn_change",
-                "changeName": "毛坯白",
-                "actionName": "转为毛坯白"
-            },
-            "转为毛坯蓝": {
-                "id": "btnToG",
-                "btn_change": "btn_change",
-                "changeName": "毛坯蓝",
-                "actionName": "转为毛坯蓝"
-            },
+            // "转为毛坯白": {
+            //     "id": "btnToWhite",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯白",
+            //     "actionName": "转为毛坯白"
+            // },
+            // "转为毛坯蓝": {
+            //     "id": "btnToBlue",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯蓝",
+            //     "actionName": "转为毛坯蓝"
+            // },
             "转为配件A": {
-                "id": "btnToG",
+                "id": "btnToPartA",
                 "btn_change": "btn_change",
                 "changeName": "配件A",
                 "actionName": "转为配件A"
             },
             "转为配件B": {
-                "id": "btnToG",
+                "id": "btnToPartB",
                 "btn_change": "btn_change",
                 "changeName": "配件B",
                 "actionName": "转为配件B"
             },
             "转为配件C": {
-                "id": "btnToG",
+                "id": "btnToPartC",
                 "btn_change": "btn_change",
                 "changeName": "配件C",
                 "actionName": "转为配件C"
@@ -562,13 +566,13 @@
                 "actionName": "转为无托盘"
             },
             "转为成品白": {
-                "id": "btnToAllNull",
+                "id": "btnToFinishWhite",
                 "btn_change": "btn_change",
                 "changeName": "成品白",
                 "actionName": "转为成品白"
             },
             "转为成品蓝": {
-                "id": "btnToAllNull",
+                "id": "btnToFinishBlue",
                 "btn_change": "btn_change",
                 "changeName": "成品蓝",
                 "actionName": "转为成品蓝"
@@ -706,12 +710,11 @@
             cont += "<ul>"
             for (var key in listObj) {
                 cont +=
-                    "<li>" +
+                    "<li"+" id=\"" + listObj[key]["id"]+"\""+">" +
                     "<button type=\"button\"" +
                     " class=\"" + listObj[key]["btn_change"] + " mui-btn mui-btn-blue\"" +
                     " changeName=\"" + listObj[key]["changeName"] + "\"" +
-                    " actionName=\"" + listObj[key]["actionName"] + "\"" +
-                    " id=\"" + listObj[key]["id"] + "\">" + key + "</button>" +
+                    " actionName=\"" + listObj[key]["actionName"]+  "\">" + key + "</button>" +
                     "</li>"
             }
             cont += "</ul>"
@@ -808,9 +811,9 @@
                     actionName: actionName,
                 }
                 muiAJAX(url, data, function (dataStr) {
-                    var btncancel = mui('#btnCancel')[0];
-                    mui.trigger(btncancel, 'tap');
+                    mui.trigger(mui('#btnCancel')[0], 'tap');
                     mui.toast(dataStr.Msg);
+                    AppMenu_Render();
                 });
             }
         }, 'div');

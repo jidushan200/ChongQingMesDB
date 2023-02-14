@@ -1,0 +1,10 @@
+1. 把apk安装到pad
+2. 修改前端 constant.js 的 ip 和 port 号
+3. 修改后端项目 的 web.config，发布后端 项目
+  <connectionStrings>
+    <!--将下面的标签内容修改成生产环境的配置-->
+    <add name="ConnString" connectionString="Data Source=DESKTOP-BFU6S7L;user id=sa;password=root;database=ChongQingGZYMESDB;max pool size = 50;" />
+  </connectionStrings>
+  
+  
+  PS：以上都是快捷方式，右键打开文件位置修改实际文件

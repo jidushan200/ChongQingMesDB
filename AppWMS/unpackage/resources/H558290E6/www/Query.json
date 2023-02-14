@@ -1,0 +1,400 @@
+192.168.60.108:8001/AppHandlers/AppStoreHandler.ashx
+
+{
+    "State": true,
+    "Msg": "",
+    "RData": {
+        "Data0": [
+            {
+                "locations": 40,
+                "storeallnull": 10,
+                "storenull": 7,
+                "material": 18,
+                "product": 5,
+                "cnt": 55
+            }
+        ],
+        "Data1": [
+            {
+                "location": 1,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": "2021-03-31 16:59:42"
+            },
+            {
+                "location": 2,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 3,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品G",
+                "materialid": null,
+                "serialnumber": "RFG00101001",
+                "optime": null
+            },
+            {
+                "location": 4,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 5,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 6,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 7,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品R",
+                "materialid": null,
+                "serialnumber": "RFR00101001",
+                "optime": null
+            },
+            {
+                "location": 8,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 9,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 10,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 11,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": "2021-05-11 09:03:26"
+            },
+            {
+                "location": 12,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-05-11 08:59:31"
+            },
+            {
+                "location": 13,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 14,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 15,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 16,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-03-31 11:41:20"
+            },
+            {
+                "location": 17,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-03-31 11:41:20"
+            },
+            {
+                "location": 18,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品R",
+                "materialid": null,
+                "serialnumber": "RFR00102002",
+                "optime": null
+            },
+            {
+                "location": 19,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料G",
+                "materialid": 1,
+                "serialnumber": null,
+                "optime": "2021-03-31 11:37:12"
+            },
+            {
+                "location": 20,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-03-31 11:37:12"
+            },
+            {
+                "location": 23,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 24,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 25,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 26,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 27,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品G",
+                "materialid": null,
+                "serialnumber": "RFG00102003",
+                "optime": null
+            },
+            {
+                "location": 28,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品R",
+                "materialid": null,
+                "serialnumber": "RFR00103004",
+                "optime": null
+            },
+            {
+                "location": 29,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 30,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 31,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-01 10:15:00"
+            },
+            {
+                "location": 32,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": null
+            },
+            {
+                "location": 33,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:49:56"
+            },
+            {
+                "location": 34,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:49:56"
+            },
+            {
+                "location": 35,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:24:19"
+            },
+            {
+                "location": 36,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:24:19"
+            },
+            {
+                "location": 37,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:48:09"
+            },
+            {
+                "location": 38,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-04-16 11:22:28"
+            },
+            {
+                "location": 39,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-05-17 11:31:20"
+            },
+            {
+                "location": 40,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-05-17 11:31:20"
+            },
+            {
+                "location": 41,
+                "storedtypeid": 2,
+                "typename": "原料",
+                "stockname": "原料R",
+                "materialid": 2,
+                "serialnumber": null,
+                "optime": "2021-05-27 15:26:37"
+            },
+            {
+                "location": 42,
+                "storedtypeid": 1,
+                "typename": "空托盘",
+                "stockname": "空托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-05-31 08:40:07"
+            }
+        ],
+        "Data2": [
+            {
+                "location": 21,
+                "storedtypeid": null,
+                "typename": null,
+                "stockname": "无托盘",
+                "materialid": null,
+                "serialnumber": null,
+                "optime": "2021-05-17 11:14:16"
+            },
+            {
+                "location": 22,
+                "storedtypeid": 3,
+                "typename": "产品",
+                "stockname": "产品R",
+                "materialid": null,
+                "serialnumber": "RFR00102008",
+                "optime": "2021-05-11 08:42:03"
+            }
+        ]
+    }
+}
