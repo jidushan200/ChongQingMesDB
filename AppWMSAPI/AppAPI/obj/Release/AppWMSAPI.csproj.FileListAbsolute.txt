@@ -5,3 +5,17 @@ D:\zhj\22重庆工职院MES系统\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.
 D:\zhj\22重庆工职院MES系统\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.CoreCompileInputs.cache
 D:\zhj\22重庆工职院MES系统\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.dll
 D:\zhj\22重庆工职院MES系统\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll.config
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\bin\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.AssemblyReference.cache
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.CoreCompileInputs.cache
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.dll
+D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll.config
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.AssemblyReference.cache
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.csproj.CoreCompileInputs.cache
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.dll
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Release\AppWMSAPI.pdb

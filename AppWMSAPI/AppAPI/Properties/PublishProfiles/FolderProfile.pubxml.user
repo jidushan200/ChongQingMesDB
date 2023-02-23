@@ -6,10 +6,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\GRJ2103\publish</_PublishTargetUrl>
-    <History>True|2022-05-09T07:03:44.4597311Z;True|2022-04-26T11:41:02.5792900+08:00;True|2022-04-21T11:48:23.5858512+08:00;</History>
+    <_PublishTargetUrl>D:\Publish\ChongQingMES_GJY2109</_PublishTargetUrl>
+    <History>True|2023-02-20T02:56:58.1033997Z;True|2023-02-20T10:43:14.7495429+08:00;True|2023-02-14T11:35:21.6595582+08:00;True|2022-09-13T09:15:38.2858335+08:00;True|2022-05-09T15:03:44.4597311+08:00;True|2022-04-26T11:41:02.5792900+08:00;True|2022-04-21T11:48:23.5858512+08:00;</History>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="AppHandlers/AppOrderCNCHandler.ashx">
+      <publishTime>05/19/2022 17:17:04</publishTime>
+    </File>
     <File Include="AppHandlers/AppOrderHandler.ashx">
       <publishTime>07/29/2021 14:08:37</publishTime>
     </File>
@@ -24,6 +27,12 @@
     </File>
     <File Include="bin/AppAPI.pdb">
       <publishTime>05/09/2022 15:03:44</publishTime>
+    </File>
+    <File Include="bin/AppWMSAPI.dll">
+      <publishTime>02/20/2023 10:56:57</publishTime>
+    </File>
+    <File Include="bin/AppWMSAPI.pdb">
+      <publishTime>02/20/2023 10:56:57</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>07/29/2021 14:08:42</publishTime>
@@ -281,7 +290,7 @@
       <publishTime>05/18/2021 14:16:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/26/2022 11:41:02</publishTime>
+      <publishTime>02/20/2023 10:43:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

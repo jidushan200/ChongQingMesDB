@@ -34,7 +34,7 @@
             height: 100%;
         }
 
-        .mui-content .main .middle_stock{
+        .mui-content .main .middle_stock {
             margin-bottom: 0.14rem;
         }
 
@@ -72,6 +72,7 @@
             padding-top: 0.08rem;
             padding-bottom: 0.08rem;
             width: 90%;
+            font-size: 0.18rem;
         }
 
         .mui-content .main .middle_stock .rowNum .colNum_span {
@@ -246,17 +247,21 @@
         }
 
         .mid_stock_area:first-child {
-            transform: translate(0, 140%);
+            transform: translate(-17%, 140%);
+        }
+
+        .mid_stock_area:nth-child(2) {
+            transform: translate(-17%, 200%);
         }
 
         .mid_stock_area:last-child {
-            transform: translate(0, 290%);
+            transform: translate(-17%, 290%);
         }
 
         /*返回+下方按钮*/
         #backBtn {
             position: absolute;
-            transform: translate(-50%,0);
+            transform: translate(-50%, 0);
             left: 50%;
             top: 2%;
             z-index: 1;
@@ -282,13 +287,14 @@
             height: 100%;
             display: block;
         }
+
         /*返回按钮结束*/
 
-        .mui-content{
+        .mui-content {
             position: relative;
         }
 
-        .right_btn{
+        .right_btn {
             position: absolute;
             bottom: 5%;
             left: 0;
@@ -297,22 +303,51 @@
 
         .right_btn ul {
             display: flex;
-            justify-content: space-between;
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0 2%;
-        }
+            flex-wrap: wrap;
         }
 
         .right_btn li {
             float: left;
+            margin-top: 2%;
+            margin-right: 4%;
         }
 
+
         /*TODO:后期修改*/
-        .check_input{
+        .check_input {
             width: 1rem !important;
             height: 0.8rem !important;
+        }
+
+        /*特殊占用遮罩*/
+		.stock_area59:after,
+		.stock_area60:after {
+		    content: '占用';
+		    line-height: 1rem;
+		    color: #fff;
+		    font-weight: bold;
+		    position: absolute;
+		    background: #ccc;
+		    z-index: 94;
+		    left: 0;
+		    right: 0;
+		    width: 100%;
+		    height: 100%;
+		}
+
+        #btnToFinishWhite{
+            margin-right:4%!important;
+        }
+
+        /*下方按钮修改*/
+        .rl_li button {
+            width: 2rem;
+            height: 0.6rem;
+            font-size: 0.23rem;
         }
     </style>
 </head>
@@ -469,9 +504,9 @@
     var pageInit = {
         start: function () {
             var title = "", cont = "";
-            this.Both_AppMenu_Init("left", title, cont, 1, 30, 1, 6)
-            this.Both_AppMenu_Init("right", title, cont, 31, 60, 31, 36)
-            this.Mid_AppMenu_Init(cont, 61, 62)
+            this.Both_AppMenu_Init("left", title, cont, 1, 30, 1, 5, 6)
+            this.Both_AppMenu_Init("right", title, cont, 31, 60, 31, 35, 6)
+            this.Mid_AppMenu_Init(cont, 61, 63)
             // this.Left_List_Init(cont, this.Left_ListHtmlObj)
             this.Right_List_Init(cont, this.Right_ListHtmlObj)
         },
@@ -496,32 +531,32 @@
                 "changeName": null,
                 "actionName": null
             },
-            "转为毛坯白": {
-                "id": "btnToR",
-                "btn_change": "btn_change",
-                "changeName": "毛坯白",
-                "actionName": "转为毛坯白"
-            },
-            "转为毛坯蓝": {
-                "id": "btnToG",
-                "btn_change": "btn_change",
-                "changeName": "毛坯蓝",
-                "actionName": "转为毛坯蓝"
-            },
+            // "转为毛坯白": {
+            //     "id": "btnToWhite",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯白",
+            //     "actionName": "转为毛坯白"
+            // },
+            // "转为毛坯蓝": {
+            //     "id": "btnToBlue",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯蓝",
+            //     "actionName": "转为毛坯蓝"
+            // },
             "转为配件A": {
-                "id": "btnToG",
+                "id": "btnToPartA",
                 "btn_change": "btn_change",
                 "changeName": "配件A",
                 "actionName": "转为配件A"
             },
             "转为配件B": {
-                "id": "btnToG",
+                "id": "btnToPartB",
                 "btn_change": "btn_change",
                 "changeName": "配件B",
                 "actionName": "转为配件B"
             },
             "转为配件C": {
-                "id": "btnToG",
+                "id": "btnToPartC",
                 "btn_change": "btn_change",
                 "changeName": "配件C",
                 "actionName": "转为配件C"
@@ -537,6 +572,18 @@
                 "btn_change": "btn_change",
                 "changeName": "无托盘",
                 "actionName": "转为无托盘"
+            },
+            "转为成品白": {
+                "id": "btnToFinishWhite",
+                "btn_change": "btn_change",
+                "changeName": "成品白",
+                "actionName": "转为成品白"
+            },
+            "转为成品蓝": {
+                "id": "btnToFinishBlue",
+                "btn_change": "btn_change",
+                "changeName": "成品蓝",
+                "actionName": "转为成品蓝"
             }
         },
         //两侧 菜单 【左/右】
@@ -548,30 +595,31 @@
          *         title / cont: 标题+内容 的 html绘制初始化变量
          *         selectStart / selectEnd: 标题选择按钮 开始数字 与 结束数字
          *         columnStart / columnEnd: 垂直第一列 最下方数字 与 最上方数字
+         *         columnNum 共多少列
          * @return
          **/
-        Both_AppMenu_Init: function (flag, title, cont, selectStart, selectEnd, columnStart, columnEnd) {
+        Both_AppMenu_Init: function (flag, title, cont, selectStart, selectEnd, columnStart, columnEnd, columnNum) {
             if ("left" === flag) {
                 //左 菜单
                 //title
-                for (var i = selectStart; i < selectEnd; i += 6) {
+                for (var i = selectStart; i < selectEnd; i += (columnNum - 1)) {
                     if (i < 10 && (i + 5) < 10) {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-0" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-0" + (i + 4) + "</button></div>"
                     }
                     else if (i < 10 && (i + 5) >= 10) {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-" + (i + 4) + "</button></div>"
                     }
                     else {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 4) + "</button></div>"
                     }
                 }
                 //cont
-                for (var i = columnEnd; i > columnStart - 1; i--) {
+                for (var i = columnStart; i < (columnEnd + 1); i++) {
                     cont += "<div class=\"rowNum rowNum1\" id=\"stock_area_" + i + "\">"
                     var add = i;
-                    for (var j = 0; j < 5; j++) {
+                    for (var j = 0; j < columnNum; j++) {
                         if (10 > add) {
-                            cont += "<div class=\"colNum stock_area\" id=\"\">" +
+                            cont += "<div class=\"colNum stock_area stock_area"+add+"\" id=\"\">" +
                                 "<div class=\"mui-checkbox \">" +
                                 "<input class=\"check_input\" name=\"checkbox\" value=\"0" + add + "\" type=\"checkbox\" id=\"check0" + add + "\">\n" +
                                 "</div>" +
@@ -580,7 +628,7 @@
                                 "<p class=\"productNum\" id=\"\">0" + add + "</p>" +
                                 "</div>"
                         } else {
-                            cont += "<div class=\"colNum stock_area\" id=\"\">" +
+                            cont += "<div class=\"colNum stock_area stock_area"+add+"\" id=\"\">" +
                                 "<div class=\"mui-checkbox \">" +
                                 "<input class=\"check_input\" name=\"checkbox\" value=\"" + add + "\" type=\"checkbox\" id=\"check" + add + "\">\n" +
                                 "</div>" +
@@ -589,7 +637,7 @@
                                 "<p class=\"productNum\" id=\"\">" + add + "</p>" +
                                 "</div>"
                         }
-                        add += 6;
+                        add += (columnNum - 1);
                     }
                     cont += "</div>"
                 }
@@ -599,16 +647,16 @@
             else {
                 //右 菜单
                 //title
-                for (var i = selectStart; i < selectEnd; i += 6) {
-                    title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 5) + "</button></div>"
+                for (var i = selectStart; i < selectEnd; i += (columnNum - 1)) {
+                    title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 4) + "</button></div>"
                 }
                 //cont
-                for (var i = columnEnd; i > columnStart - 1; i--) {
+                for (var i = columnStart; i < (columnEnd + 1); i++) {
                     cont += "<div class=\"rowNum rowNum1\" id=\"stock_area_" + i + "\">"
                     var add = i;
-                    for (var j = 0; j < 5; j++) {
+                    for (var j = 0; j < columnNum; j++) {
                         if (10 > add) {
-                            cont += "<div class=\"colNum stock_area\" id=\"\">" +
+                            cont += "<div class=\"colNum stock_area stock_area"+add+"\" id=\"\">" +
                                 "<div class=\"mui-checkbox \">" +
                                 "<input class=\"check_input\" name=\"checkbox\" value=\"0" + add + "\" type=\"checkbox\" id=\"check0" + add + "\">\n" +
                                 "</div>" +
@@ -617,7 +665,7 @@
                                 "<p class=\"productNum\" id=\"\">0" + add + "</p>" +
                                 "</div>"
                         } else {
-                            cont += "<div class=\"colNum stock_area\" id=\"\">" +
+                            cont += "<div class=\"colNum stock_area stock_area"+add+"\" id=\"\">" +
                                 "<div class=\"mui-checkbox \">" +
                                 "<input class=\"check_input\" name=\"checkbox\" value=\"" + add + "\" type=\"checkbox\" id=\"check" + add + "\">\n" +
                                 "</div>" +
@@ -626,7 +674,7 @@
                                 "<p class=\"productNum\" id=\"\">" + add + "</p>" +
                                 "</div>"
                         }
-                        add += 6;
+                        add += (columnNum - 1);
                     }
                     cont += "</div>"
                 }
@@ -637,7 +685,7 @@
         //中 菜单
         Mid_AppMenu_Init: function (cont, columnStart, columnEnd) {
             for (var i = columnStart; i < columnEnd + 1; i++) {
-                cont += "<div class=\"mid_stock_area\">\n" +
+                cont += "<div class=\"mid_stock_area  stock_area"+ i +"\">\n" +
                     "<div class=\"mui-checkbox \">\n" +
                     "<input class=\"check_input\" name=\"checkbox\" value=\"" + i + "\" type=\"checkbox\" id=\"check" + i + "\">\n" +
                     "</div>\n" +
@@ -670,12 +718,11 @@
             cont += "<ul>"
             for (var key in listObj) {
                 cont +=
-                    "<li>" +
+                    "<li "+ "class=\"rl_li\"" +" id=\"" + listObj[key]["id"]+"\""+">" +
                     "<button type=\"button\"" +
                     " class=\"" + listObj[key]["btn_change"] + " mui-btn mui-btn-blue\"" +
                     " changeName=\"" + listObj[key]["changeName"] + "\"" +
-                    " actionName=\"" + listObj[key]["actionName"] + "\"" +
-                    " id=\"" + listObj[key]["id"] + "\">" + key + "</button>" +
+                    " actionName=\"" + listObj[key]["actionName"]+  "\">" + key + "</button>" +
                     "</li>"
             }
             cont += "</ul>"
@@ -772,9 +819,9 @@
                     actionName: actionName,
                 }
                 muiAJAX(url, data, function (dataStr) {
-                    var btncancel = mui('#btnCancel')[0];
-                    mui.trigger(btncancel, 'tap');
+                    mui.trigger(mui('#btnCancel')[0], 'tap');
                     mui.toast(dataStr.Msg);
+                    AppMenu_Render();
                 });
             }
         }, 'div');

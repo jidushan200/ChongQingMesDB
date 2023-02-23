@@ -334,12 +334,19 @@
             z-index: 94;
             left: 0;
             right: 0;
-            width: 1rem;
+            width: 100%;
             height: 1rem;
         }
 
-        #btnToNull,#btnToAllNull{
-            margin-right:2.5%!important;
+        #btnToFinishWhite{
+            margin-right:4%!important;
+        }
+
+        /*下方按钮修改*/
+        .rl_li button {
+            width: 2rem;
+            height: 0.6rem;
+            font-size: 0.23rem;
         }
     </style>
 </head>
@@ -523,18 +530,18 @@
                 "changeName": null,
                 "actionName": null
             },
-            "转为毛坯白": {
-                "id": "btnToWhite",
-                "btn_change": "btn_change",
-                "changeName": "毛坯白",
-                "actionName": "转为毛坯白"
-            },
-            "转为毛坯蓝": {
-                "id": "btnToBlue",
-                "btn_change": "btn_change",
-                "changeName": "毛坯蓝",
-                "actionName": "转为毛坯蓝"
-            },
+            // "转为毛坯白": {
+            //     "id": "btnToWhite",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯白",
+            //     "actionName": "转为毛坯白"
+            // },
+            // "转为毛坯蓝": {
+            //     "id": "btnToBlue",
+            //     "btn_change": "btn_change",
+            //     "changeName": "毛坯蓝",
+            //     "actionName": "转为毛坯蓝"
+            // },
             "转为配件A": {
                 "id": "btnToPartA",
                 "btn_change": "btn_change",
@@ -596,13 +603,13 @@
                 //title
                 for (var i = selectStart; i < selectEnd; i += (columnNum - 1)) {
                     if (i < 10 && (i + 5) < 10) {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-0" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-0" + (i + 4) + "</button></div>"
                     }
                     else if (i < 10 && (i + 5) >= 10) {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择0" + i + "-" + (i + 4) + "</button></div>"
                     }
                     else {
-                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 5) + "</button></div>"
+                        title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 4) + "</button></div>"
                     }
                 }
                 //cont
@@ -640,7 +647,7 @@
                 //右 菜单
                 //title
                 for (var i = selectStart; i < selectEnd; i += (columnNum - 1)) {
-                    title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 5) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 5) + "</button></div>"
+                    title += "<div class=\"colNum\"><button minVal=\"" + i + "\" maxVal=\"" + (i + 4) + "\" class=\"mui-btn mui-btn-blue btn_select\" id=\"btnSelect0" + i + "\">选择" + i + "-" + (i + 4) + "</button></div>"
                 }
                 //cont
                 for (var i = columnStart; i < (columnEnd + 1); i++) {
@@ -710,7 +717,7 @@
             cont += "<ul>"
             for (var key in listObj) {
                 cont +=
-                    "<li"+" id=\"" + listObj[key]["id"]+"\""+">" +
+                    "<li "+ "class=\"rl_li\"" +" id=\"" + listObj[key]["id"]+"\""+">" +
                     "<button type=\"button\"" +
                     " class=\"" + listObj[key]["btn_change"] + " mui-btn mui-btn-blue\"" +
                     " changeName=\"" + listObj[key]["changeName"] + "\"" +

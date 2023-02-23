@@ -12,3 +12,10 @@ D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.csproj.AssemblyRefere
 D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.csproj.CoreCompileInputs.cache
 D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.dll
 D:\zhj\22ChongQingMES\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll.config
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.dll
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\bin\AppWMSAPI.pdb
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.csproj.AssemblyReference.cache
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.csproj.CoreCompileInputs.cache
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.dll
+D:\zhj\22ChongQingMES_GJY2109\AppWMSAPI\AppAPI\obj\Debug\AppWMSAPI.pdb
